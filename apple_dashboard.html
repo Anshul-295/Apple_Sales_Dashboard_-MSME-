@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Apple Tech Dashboard</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, sans-serif;
+}
+
+body{
+    background:#0f0f10;
+    color:white;
+}
+
+.navbar{
+    width:100%;
+    background:#111;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:18px 30px;
+    border-bottom:1px solid #222;
+    position:sticky;
+    top:0;
+    z-index:100;
+    flex-wrap:wrap;
+    gap:15px;
+}
+
+.logo{
+    font-size:24px;
+    font-weight:bold;
+}
+
+.nav-links{
+    display:flex;
+    gap:20px;
+    list-style:none;
+    flex-wrap:wrap;
+}
+
+.nav-links li{
+    color:#bdbdbd;
+}
+
+.clock{
+    background:#1c1c1e;
+    padding:10px 15px;
+    border-radius:10px;
+}
+
+.container{
+    padding:25px;
+}
+
+.header{
+    margin-bottom:25px;
+}
+
+.header h1{
+    font-size:34px;
+}
+
+.header p{
+    color:#999;
+    margin-top:8px;
+}
+
+.cards{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:20px;
+    margin-bottom:30px;
+}
+
+.card{
+    background:#1c1c1e;
+    padding:25px;
+    border-radius:20px;
+    border:1px solid #2c2c2e;
+}
+
+.card h3{
+    color:#a1a1a6;
+    margin-bottom:10px;
+}
+
+.card h2{
+    font-size:32px;
+}
+
+.green{color:#32d74b;}
+.blue{color:#0a84ff;}
+.orange{color:#ff9f0a;}
+.red{color:#ff453a;}
+
+.charts{
+    display:grid;
+    grid-template-columns:2fr 1fr;
+    gap:20px;
+    margin-bottom:30px;
+}
+
+.chart-box{
+    background:#1c1c1e;
+    padding:20px;
+    border-radius:20px;
+    border:1px solid #2c2c2e;
+}
+
+.section-title{
+    font-size:22px;
+    margin-bottom:20px;
+}
+
+/* BAR GRAPH */
+.bar-chart{
+    display:flex;
+    align-items:flex-end;
+    justify-content:space-between;
+    height:300px;
+    gap:15px;
+}
+
+.bar-item{
+    flex:1;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:flex-end;
+    height:100%;
+}
+
+.bar{
+    width:100%;
+    max-width:60px;
+    background:#0a84ff;
+    border-radius:12px 12px 0 0;
+}
+
+.bar-label{
+    margin-top:10px;
+    color:#aaa;
+    font-size:14px;
+}
+
+/* PIE CHART */
+.pie-wrapper{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-direction:column;
+    gap:20px;
+}
+
+.pie-chart{
+    width:220px;
+    height:220px;
+    border-radius:50%;
+    background:
+    conic-gradient(
+        #0a84ff 0% 40%,
+        #32d74b 40% 65%,
+        #ff9f0a 65% 85%,
+        #bf5af2 85% 100%
+    );
+}
+
+.legend{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+}
+
+.legend div{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.color{
+    width:15px;
+    height:15px;
+    border-radius:4px;
+}
+
+.table-box{
+    background:#1c1c1e;
+    padding:20px;
+    border-radius:20px;
+    border:1px solid #2c2c2e;
+    margin-bottom:30px;
+}
+
+.search-box{
+    display:flex;
+    gap:15px;
+    margin-bottom:20px;
+    flex-wrap:wrap;
+}
+
+.search-box input{
+    flex:1;
+    min-width:220px;
+    padding:14px;
+    border:none;
+    border-radius:12px;
+    background:#111;
+    color:white;
+    border:1px solid #333;
+}
+
+.search-box button{
+    padding:14px 20px;
+    border:none;
+    border-radius:12px;
+    background:#0a84ff;
+    color:white;
+    cursor:pointer;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+th, td{
+    padding:15px;
+    text-align:left;
+    border-bottom:1px solid #333;
+}
+
+th{
+    color:#999;
+}
+
+.status{
+    padding:6px 12px;
+    border-radius:20px;
+    font-size:12px;
+    font-weight:bold;
+}
+
+.available{
+    background:#123d1c;
+    color:#32d74b;
+}
+
+.low{
+    background:#4d3300;
+    color:#ff9f0a;
+}
+
+.out{
+    background:#4b1b1b;
+    color:#ff453a;
+}
+
+.inventory{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:20px;
+}
+
+.inventory-box{
+    background:#1c1c1e;
+    padding:20px;
+    border-radius:20px;
+    border:1px solid #2c2c2e;
+}
+
+.product-item{
+    margin-bottom:20px;
+}
+
+.product-top{
+    display:flex;
+    justify-content:space-between;
+    margin-bottom:8px;
+}
+
+.progress{
+    width:100%;
+    height:10px;
+    background:#333;
+    border-radius:10px;
+    overflow:hidden;
+}
+
+.progress-bar{
+    height:100%;
+    background:#0a84ff;
+}
+
+.footer{
+    text-align:center;
+    padding:30px;
+    color:#888;
+}
+
+@media(max-width:900px){
+
+.charts{
+    grid-template-columns:1fr;
+}
+
+.inventory{
+    grid-template-columns:1fr;
+}
+
+.navbar{
+    flex-direction:column;
+    align-items:flex-start;
+}
+
+table{
+    font-size:13px;
+}
+
+}
+</style>
+</head>
+
+<body>
+
+<div class="navbar">
+<div class="logo">Apple Dashboard</div>
+
+<ul class="nav-links">
+<li>Dashboard</li>
+<li>Products</li>
+<li>Inventory</li>
+<li>Analytics</li>
+<li>Reports</li>
+<li>Settings</li>
+</ul>
+
+<div class="clock" id="clock"></div>
+</div>
+
+<div class="container">
+
+<div class="header">
+<h1>Apple Product Analytics</h1>
+<p>MSME Internship Project Dashboard</p>
+</div>
+
+<div class="cards">
+
+<div class="card">
+<h3>Total Revenue</h3>
+<h2 class="green">₹18.2L</h2>
+<p>+12% this month</p>
+</div>
+
+<div class="card">
+<h3>Total Products</h3>
+<h2 class="blue">146</h2>
+<p>Across all categories</p>
+</div>
+
+<div class="card">
+<h3>Orders</h3>
+<h2 class="orange">324</h2>
+<p>42 pending</p>
+</div>
+
+<div class="card">
+<h3>Low Stock</h3>
+<h2 class="red">08</h2>
+<p>Need refill</p>
+</div>
+
+</div>
+
+<div class="charts">
+
+<div class="chart-box">
+<h2 class="section-title">Monthly Sales</h2>
+
+<div class="bar-chart">
+
+<div class="bar-item">
+<div class="bar" style="height:120px;"></div>
+<div class="bar-label">Jan</div>
+</div>
+
+<div class="bar-item">
+<div class="bar" style="height:180px;"></div>
+<div class="bar-label">Feb</div>
+</div>
+
+<div class="bar-item">
+<div class="bar" style="height:150px;"></div>
+<div class="bar-label">Mar</div>
+</div>
+
+<div class="bar-item">
+<div class="bar" style="height:220px;"></div>
+<div class="bar-label">Apr</div>
+</div>
+
+<div class="bar-item">
+<div class="bar" style="height:200px;"></div>
+<div class="bar-label">May</div>
+</div>
+
+<div class="bar-item">
+<div class="bar" style="height:260px;"></div>
+<div class="bar-label">Jun</div>
+</div>
+
+</div>
+
+</div>
+
+<div class="chart-box">
+<h2 class="section-title">Categories</h2>
+
+<div class="pie-wrapper">
+
+<div class="pie-chart"></div>
+
+<div class="legend">
+<div><span class="color" style="background:#0a84ff;"></span> iPhone</div>
+<div><span class="color" style="background:#32d74b;"></span> Mac</div>
+<div><span class="color" style="background:#ff9f0a;"></span> iPad</div>
+<div><span class="color" style="background:#bf5af2;"></span> Accessories</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="table-box">
+
+<h2 class="section-title">Apple Products</h2>
+
+<div class="search-box">
+<input type="text" id="searchInput" placeholder="Search product...">
+<button onclick="filterProducts()">Search</button>
+</div>
+
+<table>
+<thead>
+<tr>
+<th>Product</th>
+<th>Category</th>
+<th>Price</th>
+<th>Status</th>
+</tr>
+</thead>
+
+<tbody id="tableBody"></tbody>
+
+</table>
+
+</div>
+
+<div class="inventory">
+
+<div class="inventory-box">
+<h2 class="section-title">Inventory Status</h2>
+<div id="inventoryData"></div>
+</div>
+
+<div class="inventory-box">
+
+<h2 class="section-title">Top Accessories</h2>
+
+<div class="product-item">
+<div class="product-top">
+<span>AirPods Pro</span>
+<span>85%</span>
+</div>
+<div class="progress">
+<div class="progress-bar" style="width:85%"></div>
+</div>
+</div>
+
+<div class="product-item">
+<div class="product-top">
+<span>Apple Pencil</span>
+<span>60%</span>
+</div>
+<div class="progress">
+<div class="progress-bar" style="width:60%"></div>
+</div>
+</div>
+
+<div class="product-item">
+<div class="product-top">
+<span>Magic Keyboard</span>
+<span>90%</span>
+</div>
+<div class="progress">
+<div class="progress-bar" style="width:90%"></div>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="footer">
+© 2026 Apple Tech Dashboard | HTML CSS JavaScript | MSME Internship Project
+</div>
+
+<script>
+
+function updateClock(){
+const now = new Date();
+document.getElementById("clock").innerHTML = now.toLocaleTimeString();
+}
+
+setInterval(updateClock,1000);
+updateClock();
+
+const products = [
+{name:'iPhone 16 Pro',category:'Smartphone',price:'₹1,39,900',status:'Available'},
+{name:'MacBook Air M3',category:'Laptop',price:'₹1,14,900',status:'Available'},
+{name:'AirPods Max',category:'Headphones',price:'₹59,900',status:'Low Stock'},
+{name:'iPad Pro',category:'Tablet',price:'₹99,900',status:'Available'},
+{name:'Apple Watch Ultra',category:'Wearable',price:'₹89,900',status:'Out of Stock'},
+{name:'Mac Mini',category:'Desktop',price:'₹64,900',status:'Available'},
+{name:'Magic Mouse',category:'Accessory',price:'₹7,500',status:'Low Stock'},
+{name:'HomePod Mini',category:'Speaker',price:'₹10,900',status:'Available'}
+];
+
+function getStatusClass(status){
+if(status === 'Available') return 'available';
+if(status === 'Low Stock') return 'low';
+return 'out';
+}
+
+function renderTable(data){
+
+const tableBody = document.getElementById("tableBody");
+
+tableBody.innerHTML = data.map(item => `
+<tr>
+<td>${item.name}</td>
+<td>${item.category}</td>
+<td>${item.price}</td>
+<td><span class="status ${getStatusClass(item.status)}">${item.status}</span></td>
+</tr>
+`).join('');
+
+}
+
+renderTable(products);
+
+function filterProducts(){
+
+const search = document.getElementById("searchInput").value.toLowerCase();
+
+const filtered = products.filter(product =>
+product.name.toLowerCase().includes(search)
+);
+
+renderTable(filtered);
+
+}
+
+const inventory = [
+{name:'iPhone 16 Pro', stock:90},
+{name:'MacBook Air', stock:75},
+{name:'AirPods Pro', stock:50},
+{name:'Apple Watch', stock:30},
+{name:'iPad Pro', stock:65}
+];
+
+document.getElementById("inventoryData").innerHTML = inventory.map(item => `
+<div class="product-item">
+<div class="product-top">
+<span>${item.name}</span>
+<span>${item.stock}%</span>
+</div>
+<div class="progress">
+<div class="progress-bar" style="width:${item.stock}%"></div>
+</div>
+</div>
+`).join('');
+
+</script>
+
+</body>
+</html>
