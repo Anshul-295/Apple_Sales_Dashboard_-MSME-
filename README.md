@@ -55,3 +55,6 @@ Submission Date: 9th May 2026
 ## Project Screenshot
 
 Apple Sales Dashboard UI with analytics and inventory management system.
+
+
+**Supported By ANSHUL**
